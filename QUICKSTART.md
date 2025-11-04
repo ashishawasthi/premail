@@ -56,11 +56,12 @@ In the preview window, you can:
 - Desktop / Tablet views
 
 **Switch Email Clients:**
-- Gmail
-- Outlook
-- Apple Mail
-- Yahoo Mail
-- ProtonMail
+- Gmail (with authentic toolbar and action buttons)
+- Outlook (Microsoft-style interface)
+- Apple Mail (iOS/macOS design)
+- Yahoo Mail (Yahoo's signature interface)
+
+Each email client shows realistic UI elements like toolbars, action buttons, and authentic styling to match the actual apps!
 
 Simply use the dropdown menus in the preview toolbar to see how your email looks!
 

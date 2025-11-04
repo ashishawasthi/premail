@@ -307,6 +307,95 @@
             transition: all 0.3s;
         }
 
+        /* Email Client Toolbar */
+        .client-toolbar {
+            display: none;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px 16px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .client-toolbar.active {
+            display: flex;
+        }
+
+        .toolbar-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+            font-size: 18px;
+        }
+
+        .toolbar-icon:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .toolbar-spacer {
+            flex: 1;
+        }
+
+        /* Gmail Specific */
+        .client-toolbar.gmail {
+            background-color: #ffffff;
+        }
+
+        .client-toolbar.gmail .toolbar-icon {
+            color: #5f6368;
+        }
+
+        .client-toolbar.gmail .toolbar-icon.primary {
+            color: #1a73e8;
+        }
+
+        /* Outlook Specific */
+        .client-toolbar.outlook {
+            background-color: #ffffff;
+            border-bottom: 1px solid #edebe9;
+        }
+
+        .client-toolbar.outlook .toolbar-icon {
+            color: #323130;
+        }
+
+        .client-toolbar.outlook .toolbar-icon.primary {
+            color: #0078d4;
+        }
+
+        /* Apple Mail Specific */
+        .client-toolbar.apple-mail {
+            background-color: #fafafa;
+            border-bottom: 1px solid #d1d1d6;
+        }
+
+        .client-toolbar.apple-mail .toolbar-icon {
+            color: #3c3c43;
+        }
+
+        .client-toolbar.apple-mail .toolbar-icon.primary {
+            color: #007aff;
+        }
+
+        /* Yahoo Specific */
+        .client-toolbar.yahoo {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e7e7e9;
+        }
+
+        .client-toolbar.yahoo .toolbar-icon {
+            color: #3d3d3d;
+        }
+
+        .client-toolbar.yahoo .toolbar-icon.primary {
+            color: #6e00d1;
+        }
+
         .email-preview-container {
             margin: 0 auto;
             background-color: #ffffff;
@@ -317,10 +406,45 @@
             border-bottom: 1px solid #e9ecef;
         }
 
+        .email-from {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .sender-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .sender-info {
+            flex: 1;
+        }
+
+        .sender-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .sender-email {
+            font-size: 13px;
+            color: #666;
+        }
+
         .email-meta {
             font-size: 13px;
             color: #666;
-            margin-bottom: 15px;
             line-height: 1.6;
         }
 
@@ -328,7 +452,12 @@
             font-size: 22px;
             font-weight: 600;
             color: #333;
-            margin: 10px 0;
+            margin: 15px 0 10px 0;
+        }
+
+        .email-date {
+            font-size: 13px;
+            color: #999;
         }
 
         .email-body {
@@ -389,7 +518,11 @@
         }
 
         @media print {
-            .preview-toolbar {
+            .preview-toolbar,
+            .client-toolbar,
+            .status-bar,
+            .device-info,
+            .volume-buttons {
                 display: none !important;
             }
             .device-frame {
@@ -399,10 +532,7 @@
                 border: none !important;
             }
             .device-frame::before,
-            .device-frame::after,
-            .volume-buttons,
-            .status-bar,
-            .device-info {
+            .device-frame::after {
                 display: none !important;
             }
             body {
@@ -475,16 +605,60 @@
                     </div>
                 </div>
                 <div id="emailClientWrapper" class="email-client-wrapper">
+                    <!-- Gmail Toolbar -->
+                    <div class="client-toolbar gmail" id="toolbar-gmail">
+                        <div class="toolbar-icon" title="Back">←</div>
+                        <div class="toolbar-spacer"></div>
+                        <div class="toolbar-icon" title="Archive">📥</div>
+                        <div class="toolbar-icon" title="Delete">🗑️</div>
+                        <div class="toolbar-icon" title="Mark as unread">✉️</div>
+                        <div class="toolbar-icon" title="More">⋮</div>
+                    </div>
+
+                    <!-- Outlook Toolbar -->
+                    <div class="client-toolbar outlook" id="toolbar-outlook">
+                        <div class="toolbar-icon" title="Back">←</div>
+                        <div class="toolbar-spacer"></div>
+                        <div class="toolbar-icon" title="Archive">📂</div>
+                        <div class="toolbar-icon" title="Delete">🗑️</div>
+                        <div class="toolbar-icon" title="Flag">🚩</div>
+                        <div class="toolbar-icon" title="More">⋯</div>
+                    </div>
+
+                    <!-- Apple Mail Toolbar -->
+                    <div class="client-toolbar apple-mail" id="toolbar-apple-mail">
+                        <div class="toolbar-icon" title="Back">‹</div>
+                        <div class="toolbar-spacer"></div>
+                        <div class="toolbar-icon" title="Flag">🚩</div>
+                        <div class="toolbar-icon" title="Move">📁</div>
+                        <div class="toolbar-icon" title="Delete">🗑️</div>
+                        <div class="toolbar-icon" title="Reply">↩</div>
+                        <div class="toolbar-icon" title="Compose">✏️</div>
+                    </div>
+
+                    <!-- Yahoo Toolbar -->
+                    <div class="client-toolbar yahoo" id="toolbar-yahoo">
+                        <div class="toolbar-icon" title="Back">←</div>
+                        <div class="toolbar-spacer"></div>
+                        <div class="toolbar-icon" title="Star">⭐</div>
+                        <div class="toolbar-icon" title="Delete">🗑️</div>
+                        <div class="toolbar-icon" title="Move">📂</div>
+                        <div class="toolbar-icon" title="More">⋮</div>
+                    </div>
+
                     <div class="email-preview-container" id="emailContainer">
                         <div class="email-header">
-                            <div class="email-meta">
-                                <strong>From:</strong> marketing@yourcompany.com<br>
-                                <strong>To:</strong> recipient@example.com<br>
-                                <strong>Date:</strong> {{ preview_date }}
+                            <div class="email-from">
+                                <div class="sender-avatar">M</div>
+                                <div class="sender-info">
+                                    <div class="sender-name">Marketing Team</div>
+                                    <div class="sender-email">marketing@yourcompany.com</div>
+                                </div>
                             </div>
                             <div class="email-subject">
                                 {{ subject }}
                             </div>
+                            <div class="email-date">{{ preview_date }}</div>
                         </div>
 
                         <div class="email-body">
@@ -579,6 +753,17 @@
 
             const wrapper = document.getElementById('emailClientWrapper');
             const container = document.getElementById('emailContainer');
+
+            // Hide all toolbars
+            document.querySelectorAll('.client-toolbar').forEach(toolbar => {
+                toolbar.classList.remove('active');
+            });
+
+            // Show specific toolbar if exists
+            const toolbar = document.getElementById('toolbar-' + clientKey);
+            if (toolbar && client.has_toolbar) {
+                toolbar.classList.add('active');
+            }
 
             // Apply client-specific styles
             wrapper.style.backgroundColor = client.background;

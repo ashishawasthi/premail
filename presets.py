@@ -53,42 +53,55 @@ EMAIL_CLIENT_PRESETS = {
         'name': 'Gmail',
         'icon': '📧',
         'background': '#f2f6fc',
-        'font': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        'max_width': '700px'
+        'font': 'Roboto, Arial, sans-serif',
+        'max_width': '700px',
+        'header_color': '#ffffff',
+        'toolbar_color': '#f5f5f5',
+        'primary_color': '#1a73e8',
+        'has_toolbar': True
     },
     'outlook': {
         'name': 'Outlook',
         'icon': '📧',
-        'background': '#ffffff',
-        'font': 'Calibri, Arial, sans-serif',
-        'max_width': '680px'
+        'background': '#faf9f8',
+        'font': '"Segoe UI", Calibri, Arial, sans-serif',
+        'max_width': '680px',
+        'header_color': '#0078d4',
+        'toolbar_color': '#ffffff',
+        'primary_color': '#0078d4',
+        'has_toolbar': True
     },
     'apple-mail': {
         'name': 'Apple Mail',
         'icon': '📧',
-        'background': '#e5e5ea',
-        'font': '-apple-system, BlinkMacSystemFont, sans-serif',
-        'max_width': '750px'
+        'background': '#ffffff',
+        'font': '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif',
+        'max_width': '750px',
+        'header_color': '#f5f5f5',
+        'toolbar_color': '#fafafa',
+        'primary_color': '#007aff',
+        'has_toolbar': True
     },
     'yahoo': {
         'name': 'Yahoo Mail',
         'icon': '📧',
         'background': '#f5f5f5',
         'font': 'Arial, sans-serif',
-        'max_width': '700px'
-    },
-    'protonmail': {
-        'name': 'ProtonMail',
-        'icon': '📧',
-        'background': '#f6f7fb',
-        'font': '-apple-system, BlinkMacSystemFont, sans-serif',
-        'max_width': '720px'
+        'max_width': '700px',
+        'header_color': '#6e00d1',
+        'toolbar_color': '#ffffff',
+        'primary_color': '#6e00d1',
+        'has_toolbar': True
     },
     'default': {
         'name': 'Default',
         'icon': '📧',
         'background': '#ffffff',
         'font': 'Arial, sans-serif',
-        'max_width': '100%'
+        'max_width': '100%',
+        'header_color': '#f0f0f0',
+        'toolbar_color': '#ffffff',
+        'primary_color': '#333333',
+        'has_toolbar': False
     }
 }

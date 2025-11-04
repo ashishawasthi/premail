@@ -9,12 +9,11 @@ A simple, lightweight email preview application for marketing emails with images
   - Samsung Galaxy S25 & S25 Ultra
   - iPad Pro
   - Desktop & Tablet views
-- **Email Client Simulation**: Preview how emails appear in different clients
-  - Gmail
-  - Outlook
-  - Apple Mail
-  - Yahoo Mail
-  - ProtonMail
+- **Email Client Simulation**: Preview how emails appear in different clients with authentic UI
+  - Gmail (with archive, delete, and action buttons)
+  - Outlook (with Microsoft-style toolbar)
+  - Apple Mail (with iOS/macOS design)
+  - Yahoo Mail (with Yahoo interface)
 - **HTML Email Support**: Full support for HTML content with inline styles
 - **Image Gallery**: Display and manage image URLs
 - **Responsive Design**: Beautiful, modern interface
@@ -104,12 +103,12 @@ In the preview window:
    - iPad Pro
    - Generic Tablet
 2. Use the **Email Client** dropdown to simulate:
-   - Gmail's interface and styling
-   - Outlook's appearance
-   - Apple Mail's design
-   - Yahoo Mail
-   - ProtonMail
-3. See how your email renders in different environments instantly!
+   - **Gmail** - Complete with archive, delete, and action buttons just like the real app
+   - **Outlook** - Microsoft-style toolbar with flag and archive options
+   - **Apple Mail** - iOS/macOS design with reply and compose buttons
+   - **Yahoo Mail** - Yahoo's purple-themed interface with star and move actions
+3. Each client displays authentic toolbars and UI elements
+4. See how your email renders in different environments instantly!
 
 ## API Usage
 
