@@ -9,7 +9,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
@@ -96,56 +96,210 @@
         .preview-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             min-height: calc(100vh - 80px);
-            padding: 30px 20px;
+            padding: 40px 20px;
         }
 
         .device-frame {
-            transition: all 0.3s ease;
-            background-color: #2c3e50;
+            transition: all 0.4s ease;
+            background-color: #ffffff;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
             position: relative;
         }
 
-        .device-frame.mobile {
-            border-radius: 35px;
-            padding: 50px 15px;
-            background: linear-gradient(145deg, #2c3e50, #34495e);
+        /* iPhone Styling */
+        .device-frame.iphone {
+            background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+            border-radius: 55px;
+            padding: 15px;
+            border: 3px solid #000000;
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.6),
+                inset 0 0 2px rgba(255,255,255,0.1);
         }
 
-        .device-frame.mobile::before {
+        /* iPhone Dynamic Island */
+        .device-frame.iphone.has-dynamic-island::before {
             content: '';
             position: absolute;
-            top: 15px;
+            top: 25px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 6px;
-            background-color: #1a1a1a;
-            border-radius: 3px;
+            width: 126px;
+            height: 37px;
+            background: #000000;
+            border-radius: 19px;
+            z-index: 10;
+            box-shadow:
+                inset 0 0 5px rgba(0,0,0,0.8),
+                0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* iPhone Notch (older models) */
+        .device-frame.iphone.has-notch::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 30px;
+            background: #000000;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        /* Samsung Styling */
+        .device-frame.samsung {
+            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            border-radius: 45px;
+            padding: 12px;
+            border: 2px solid #000000;
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.6),
+                inset 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        /* Samsung Camera Punch-hole */
+        .device-frame.samsung::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #000000;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow:
+                0 0 0 2px rgba(40,40,40,0.8),
+                inset 0 0 3px rgba(0,0,0,0.9);
+        }
+
+        /* Tablet Styling */
+        .device-frame.tablet {
+            background: linear-gradient(145deg, #2c2c2e, #3c3c3e);
+            border-radius: 30px;
+            padding: 20px;
+            border: 3px solid #1a1a1a;
+        }
+
+        /* Power Button (right side) */
+        .device-frame.mobile::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 150px;
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* Volume Buttons (left side) */
+        .device-frame.mobile .volume-buttons {
+            position: absolute;
+            left: -4px;
+            top: 120px;
+        }
+
+        .device-frame.mobile .volume-buttons::before,
+        .device-frame.mobile .volume-buttons::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 4px;
+            height: 45px;
+            background: linear-gradient(90deg, #2a2a2a, #1a1a1a);
+            border-radius: 2px 0 0 2px;
+        }
+
+        .device-frame.mobile .volume-buttons::before {
+            top: 0;
+        }
+
+        .device-frame.mobile .volume-buttons::after {
+            top: 55px;
+            height: 45px;
         }
 
         .device-info {
             position: absolute;
-            top: -25px;
+            top: -30px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(52, 73, 94, 0.9);
-            color: #ecf0f1;
-            padding: 5px 15px;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 6px 18px;
+            border-radius: 20px;
             font-size: 12px;
+            font-weight: 600;
             white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
 
         .email-viewport {
             background-color: #ffffff;
             overflow: auto;
-            border-radius: 4px;
+            border-radius: 0;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .device-frame.iphone .email-viewport {
+            border-radius: 45px;
+            padding-top: 50px;
+        }
+
+        .device-frame.iphone.has-dynamic-island .email-viewport {
+            padding-top: 70px;
+        }
+
+        .device-frame.samsung .email-viewport {
+            border-radius: 38px;
+            padding-top: 45px;
+        }
+
+        .device-frame.tablet .email-viewport {
+            border-radius: 20px;
+        }
+
+        /* Status bar for phones */
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: transparent;
+            z-index: 5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .device-frame.iphone.has-dynamic-island .status-bar {
+            height: 60px;
+        }
+
+        .status-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .email-client-wrapper {
@@ -242,6 +396,14 @@
                 background: none !important;
                 padding: 0 !important;
                 box-shadow: none !important;
+                border: none !important;
+            }
+            .device-frame::before,
+            .device-frame::after,
+            .volume-buttons,
+            .status-bar,
+            .device-info {
+                display: none !important;
             }
             body {
                 background: white !important;
@@ -300,7 +462,18 @@
     <div class="preview-container">
         <div id="deviceFrame" class="device-frame">
             <div class="device-info" id="deviceInfo">Desktop View</div>
+            <div class="volume-buttons"></div>
             <div id="emailViewport" class="email-viewport">
+                <div class="status-bar" id="statusBar">
+                    <div class="status-bar-left">
+                        <span id="timeDisplay">9:41</span>
+                    </div>
+                    <div class="status-bar-right">
+                        <span>📶</span>
+                        <span>📡</span>
+                        <span>🔋</span>
+                    </div>
+                </div>
                 <div id="emailClientWrapper" class="email-client-wrapper">
                     <div class="email-preview-container" id="emailContainer">
                         <div class="email-header">
@@ -343,6 +516,14 @@
         const devices = {{ devices|tojson }};
         const clients = {{ clients|tojson }};
 
+        // Update time in status bar
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('timeDisplay').textContent = hours + ':' + minutes;
+        }
+
         function changeDevice() {
             const selector = document.getElementById('deviceSelector');
             const deviceKey = selector.value;
@@ -351,23 +532,43 @@
             const frame = document.getElementById('deviceFrame');
             const viewport = document.getElementById('emailViewport');
             const info = document.getElementById('deviceInfo');
+            const statusBar = document.getElementById('statusBar');
 
             // Update device info
             info.textContent = device.name;
 
-            // Update viewport dimensions
+            // Remove all device classes
+            frame.className = 'device-frame';
+
+            // Update viewport dimensions and styling based on device
             if (device.width === '100%') {
                 // Desktop view
                 viewport.style.width = '100%';
                 viewport.style.height = '800px';
                 viewport.style.maxWidth = '1200px';
-                frame.classList.remove('mobile');
+                viewport.style.paddingTop = '0';
+                statusBar.style.display = 'none';
             } else {
                 // Mobile/Tablet view
                 viewport.style.width = device.width;
                 viewport.style.height = device.height;
                 viewport.style.maxWidth = device.width;
+                statusBar.style.display = 'flex';
+
+                // Add specific device styling
                 frame.classList.add('mobile');
+
+                if (deviceKey.includes('iphone-17')) {
+                    frame.classList.add('iphone', 'has-dynamic-island');
+                } else if (deviceKey.includes('iphone')) {
+                    frame.classList.add('iphone', 'has-notch');
+                } else if (deviceKey.includes('galaxy')) {
+                    frame.classList.add('samsung');
+                } else if (deviceKey.includes('ipad') || deviceKey.includes('tablet')) {
+                    frame.classList.remove('mobile');
+                    frame.classList.add('tablet');
+                    statusBar.style.display = 'none';
+                }
             }
         }
 
@@ -388,6 +589,8 @@
 
         // Initialize on load
         window.addEventListener('load', function() {
+            updateTime();
+            setInterval(updateTime, 60000); // Update every minute
             changeDevice();
             changeClient();
         });
