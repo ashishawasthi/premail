@@ -7,6 +7,7 @@ A simple Flask application for previewing marketing emails with images
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
 import os
+from presets import DEVICE_PRESETS, EMAIL_CLIENT_PRESETS
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max content
@@ -34,7 +35,9 @@ def preview():
                              subject=subject,
                              content=content,
                              images=image_list,
-                             preview_date=preview_date)
+                             preview_date=preview_date,
+                             devices=DEVICE_PRESETS,
+                             clients=EMAIL_CLIENT_PRESETS)
     except Exception as e:
         return f"Error rendering preview: {str(e)}", 400
 

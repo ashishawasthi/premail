@@ -45,6 +45,25 @@ Navigate to: **http://localhost:5000**
 3. **Add Images** (optional): Add image URLs, one per line
 4. **Preview**: Click "Preview Email" button
 
+## 📱 Test Across Devices & Email Clients
+
+In the preview window, you can:
+
+**Switch Devices:**
+- iPhone 17 / iPhone 17 Pro
+- Samsung Galaxy S25 / S25 Ultra
+- iPad Pro
+- Desktop / Tablet views
+
+**Switch Email Clients:**
+- Gmail
+- Outlook
+- Apple Mail
+- Yahoo Mail
+- ProtonMail
+
+Simply use the dropdown menus in the preview toolbar to see how your email looks!
+
 ## 💡 Sample Email
 
 Click the "Load Sample" button on the main page to see an example!

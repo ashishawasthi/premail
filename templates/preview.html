@@ -6,38 +6,182 @@
     <title>Email Preview: {{ subject }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        .email-preview-container {
-            max-width: 800px;
-            margin: 20px auto;
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .preview-toolbar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .toolbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .toolbar-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .toolbar-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .control-label {
+            font-size: 13px;
+            color: #ecf0f1;
+            margin-right: 5px;
+        }
+
+        select, button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        select {
             background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            color: #333;
+            min-width: 150px;
+        }
+
+        select:hover {
+            background-color: #f0f0f0;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            font-weight: 500;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background-color: #95a5a6;
+        }
+
+        button.secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: calc(100vh - 80px);
+            padding: 30px 20px;
+        }
+
+        .device-frame {
+            transition: all 0.3s ease;
+            background-color: #2c3e50;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .device-frame.mobile {
+            border-radius: 35px;
+            padding: 50px 15px;
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+        }
+
+        .device-frame.mobile::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background-color: #1a1a1a;
+            border-radius: 3px;
+        }
+
+        .device-info {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(52, 73, 94, 0.9);
+            color: #ecf0f1;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .email-viewport {
+            background-color: #ffffff;
+            overflow: auto;
+            border-radius: 4px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .email-client-wrapper {
+            min-height: 100%;
+            transition: all 0.3s;
+        }
+
+        .email-preview-container {
+            margin: 0 auto;
+            background-color: #ffffff;
         }
 
         .email-header {
-            background-color: #f8f9fa;
             padding: 20px;
-            border-bottom: 2px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
         }
 
         .email-meta {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         .email-subject {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             color: #333;
             margin: 10px 0;
         }
 
         .email-body {
-            padding: 30px;
+            padding: 20px;
             background-color: #ffffff;
             min-height: 200px;
+            word-wrap: break-word;
         }
 
         .email-body img {
@@ -48,20 +192,20 @@
         .email-images {
             padding: 20px;
             background-color: #f8f9fa;
-            border-top: 2px solid #e9ecef;
+            border-top: 1px solid #e9ecef;
         }
 
         .email-images h3 {
             margin-top: 0;
             color: #333;
-            font-size: 18px;
+            font-size: 16px;
+            margin-bottom: 15px;
         }
 
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 15px;
         }
 
         .image-item {
@@ -80,7 +224,7 @@
         .image-item a {
             display: block;
             padding: 8px;
-            font-size: 12px;
+            font-size: 11px;
             color: #007bff;
             text-decoration: none;
             word-break: break-all;
@@ -90,86 +234,163 @@
             background-color: #f8f9fa;
         }
 
-        .preview-toolbar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        @media print {
+            .preview-toolbar {
+                display: none !important;
+            }
+            .device-frame {
+                background: none !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+            }
+            body {
+                background: white !important;
+            }
         }
 
-        .preview-toolbar h2 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: normal;
-        }
-
-        .preview-toolbar .actions button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 14px;
-        }
-
-        .preview-toolbar .actions button:hover {
-            background-color: #0056b3;
-        }
-
-        .no-images {
-            color: #999;
-            font-style: italic;
+        @media (max-width: 768px) {
+            .toolbar-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .toolbar-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .control-group {
+                width: 100%;
+            }
+            select {
+                width: 100%;
+            }
         }
     </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #e9ecef;">
-
+<body>
     <div class="preview-toolbar">
-        <h2>📧 Email Preview</h2>
-        <div class="actions">
-            <button onclick="window.print()">🖨️ Print</button>
-            <button onclick="window.close()">✖️ Close</button>
-        </div>
-    </div>
-
-    <div class="email-preview-container">
-        <div class="email-header">
-            <div class="email-meta">
-                <strong>From:</strong> marketing@yourcompany.com<br>
-                <strong>To:</strong> recipient@example.com<br>
-                <strong>Date:</strong> {{ preview_date }}
-            </div>
-            <div class="email-subject">
-                {{ subject }}
-            </div>
-        </div>
-
-        <div class="email-body">
-            {{ content|safe }}
-        </div>
-
-        {% if images %}
-        <div class="email-images">
-            <h3>📷 Attached Images ({{ images|length }})</h3>
-            <div class="image-grid">
-                {% for image in images %}
-                <div class="image-item">
-                    <img src="{{ image }}" alt="Email Image {{ loop.index }}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22200%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22%3EImage failed to load%3C/text%3E%3C/svg%3E'">
-                    <a href="{{ image }}" target="_blank">{{ image }}</a>
+        <div class="toolbar-content">
+            <div class="toolbar-title">📧 Email Preview</div>
+            <div class="toolbar-controls">
+                <div class="control-group">
+                    <span class="control-label">Device:</span>
+                    <select id="deviceSelector" onchange="changeDevice()">
+                        {% for key, device in devices.items() %}
+                        <option value="{{ key }}" {% if key == 'desktop' %}selected{% endif %}>
+                            {{ device.icon }} {{ device.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
                 </div>
-                {% endfor %}
+                <div class="control-group">
+                    <span class="control-label">Email Client:</span>
+                    <select id="clientSelector" onchange="changeClient()">
+                        {% for key, client in clients.items() %}
+                        <option value="{{ key }}" {% if key == 'gmail' %}selected{% endif %}>
+                            {{ client.icon }} {{ client.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button onclick="window.print()">🖨️ Print</button>
+                <button class="secondary" onclick="window.close()">✖️ Close</button>
             </div>
         </div>
-        {% endif %}
     </div>
 
-    <div style="text-align: center; padding: 20px; color: #666; font-size: 14px;">
-        <p>This is a preview generated by PreMail</p>
+    <div class="preview-container">
+        <div id="deviceFrame" class="device-frame">
+            <div class="device-info" id="deviceInfo">Desktop View</div>
+            <div id="emailViewport" class="email-viewport">
+                <div id="emailClientWrapper" class="email-client-wrapper">
+                    <div class="email-preview-container" id="emailContainer">
+                        <div class="email-header">
+                            <div class="email-meta">
+                                <strong>From:</strong> marketing@yourcompany.com<br>
+                                <strong>To:</strong> recipient@example.com<br>
+                                <strong>Date:</strong> {{ preview_date }}
+                            </div>
+                            <div class="email-subject">
+                                {{ subject }}
+                            </div>
+                        </div>
+
+                        <div class="email-body">
+                            {{ content|safe }}
+                        </div>
+
+                        {% if images %}
+                        <div class="email-images">
+                            <h3>📷 Attached Images ({{ images|length }})</h3>
+                            <div class="image-grid">
+                                {% for image in images %}
+                                <div class="image-item">
+                                    <img src="{{ image }}" alt="Email Image {{ loop.index }}"
+                                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22200%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22%3EImage failed to load%3C/text%3E%3C/svg%3E'">
+                                    <a href="{{ image }}" target="_blank" onclick="event.stopPropagation()">{{ image }}</a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script>
+        // Device and client presets
+        const devices = {{ devices|tojson }};
+        const clients = {{ clients|tojson }};
+
+        function changeDevice() {
+            const selector = document.getElementById('deviceSelector');
+            const deviceKey = selector.value;
+            const device = devices[deviceKey];
+
+            const frame = document.getElementById('deviceFrame');
+            const viewport = document.getElementById('emailViewport');
+            const info = document.getElementById('deviceInfo');
+
+            // Update device info
+            info.textContent = device.name;
+
+            // Update viewport dimensions
+            if (device.width === '100%') {
+                // Desktop view
+                viewport.style.width = '100%';
+                viewport.style.height = '800px';
+                viewport.style.maxWidth = '1200px';
+                frame.classList.remove('mobile');
+            } else {
+                // Mobile/Tablet view
+                viewport.style.width = device.width;
+                viewport.style.height = device.height;
+                viewport.style.maxWidth = device.width;
+                frame.classList.add('mobile');
+            }
+        }
+
+        function changeClient() {
+            const selector = document.getElementById('clientSelector');
+            const clientKey = selector.value;
+            const client = clients[clientKey];
+
+            const wrapper = document.getElementById('emailClientWrapper');
+            const container = document.getElementById('emailContainer');
+
+            // Apply client-specific styles
+            wrapper.style.backgroundColor = client.background;
+            wrapper.style.fontFamily = client.font;
+            container.style.maxWidth = client.max_width;
+            container.style.margin = '0 auto';
+        }
+
+        // Initialize on load
+        window.addEventListener('load', function() {
+            changeDevice();
+            changeClient();
+        });
+    </script>
 </body>
 </html>

@@ -4,12 +4,23 @@ A simple, lightweight email preview application for marketing emails with images
 
 ## Features
 
-- Preview marketing emails with embedded images
-- Support for HTML email content
-- Image rendering from URLs
-- Responsive email preview
-- Easy to deploy and run
-- No database required
+- **Multi-Device Preview**: Test emails on popular device sizes
+  - iPhone 17 & iPhone 17 Pro
+  - Samsung Galaxy S25 & S25 Ultra
+  - iPad Pro
+  - Desktop & Tablet views
+- **Email Client Simulation**: Preview how emails appear in different clients
+  - Gmail
+  - Outlook
+  - Apple Mail
+  - Yahoo Mail
+  - ProtonMail
+- **HTML Email Support**: Full support for HTML content with inline styles
+- **Image Gallery**: Display and manage image URLs
+- **Responsive Design**: Beautiful, modern interface
+- **Easy Deployment**: Run on desktop or server with minimal setup
+- **No Database Required**: Completely stateless application
+- **Print-Friendly**: Print preview for documentation
 
 ## Requirements
 
@@ -75,11 +86,30 @@ The application will be available at `http://localhost:5000`
 
 ## Usage
 
+### Creating a Preview
+
 1. Open the application in your web browser
 2. Enter your email subject
 3. Paste your HTML email content
 4. Add image URLs (one per line) if needed
 5. Click "Preview Email" to see the rendered preview
+
+### Testing Across Devices and Clients
+
+In the preview window:
+1. Use the **Device** dropdown to switch between:
+   - Desktop view
+   - iPhone 17 / 17 Pro
+   - Samsung Galaxy S25 / S25 Ultra
+   - iPad Pro
+   - Generic Tablet
+2. Use the **Email Client** dropdown to simulate:
+   - Gmail's interface and styling
+   - Outlook's appearance
+   - Apple Mail's design
+   - Yahoo Mail
+   - ProtonMail
+3. See how your email renders in different environments instantly!
 
 ## API Usage
 
@@ -108,6 +138,7 @@ Edit `config.py` to customize:
 premail/
 ├── app.py              # Main Flask application
 ├── config.py           # Configuration settings
+├── presets.py          # Device and email client presets
 ├── requirements.txt    # Python dependencies
 ├── run.sh              # Linux/macOS startup script
 ├── run.bat             # Windows startup script
@@ -115,7 +146,7 @@ premail/
 ├── docker-compose.yml  # Docker Compose configuration
 ├── templates/          # HTML templates
 │   ├── index.html     # Main interface
-│   └── preview.html   # Email preview template
+│   └── preview.html   # Email preview with device/client switcher
 └── static/            # Static assets (CSS, JS)
     └── style.css      # Styles
 ```
