@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreMail - Email Preview Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📧 PreMail</h1>
+            <p class="subtitle">Preview your marketing emails before sending</p>
+        </header>
+
+        <div class="main-content">
+            <div class="form-section">
+                <h2>Email Details</h2>
+                <form action="/preview" method="POST" target="_blank">
+                    <div class="form-group">
+                        <label for="subject">Email Subject:</label>
+                        <input type="text"
+                               id="subject"
+                               name="subject"
+                               placeholder="Enter email subject..."
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Email Content (HTML):</label>
+                        <textarea id="content"
+                                  name="content"
+                                  rows="15"
+                                  placeholder="Paste your HTML email content here...&#10;&#10;Example:&#10;<h1>Welcome to our Newsletter!</h1>&#10;<p>Check out our latest products and offers.</p>&#10;<img src='IMAGE_URL' alt='Product' style='max-width: 100%;'>"
+                                  required></textarea>
+                        <small>Tip: You can include inline styles and HTML formatting</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="images">Image URLs (optional):</label>
+                        <textarea id="images"
+                                  name="images"
+                                  rows="5"
+                                  placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg&#10;https://example.com/image3.jpg"></textarea>
+                        <small>Enter one URL per line. These will be displayed below the email content.</small>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">
+                            👁️ Preview Email
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="loadSample()">
+                            📄 Load Sample
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            🗑️ Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="info-section">
+                <h3>ℹ️ How to Use</h3>
+                <ol>
+                    <li>Enter your email subject line</li>
+                    <li>Paste your HTML email content (with inline styles)</li>
+                    <li>Optionally add image URLs (one per line)</li>
+                    <li>Click "Preview Email" to see the rendered result</li>
+                </ol>
+
+                <h3>💡 Tips</h3>
+                <ul>
+                    <li>Use inline CSS for better email client compatibility</li>
+                    <li>Images in HTML should use absolute URLs</li>
+                    <li>Test your preview in different screen sizes</li>
+                    <li>Preview opens in a new tab for easy comparison</li>
+                </ul>
+
+                <h3>🔧 API Usage</h3>
+                <pre><code>POST /api/preview
+Content-Type: application/json
+
+{
+  "subject": "Your Subject",
+  "content": "&lt;h1&gt;Content&lt;/h1&gt;",
+  "images": ["url1", "url2"]
+}</code></pre>
+            </div>
+        </div>
+
+        <footer>
+            <p>PreMail - Simple Email Preview Tool | <a href="https://github.com" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function loadSample() {
+            document.getElementById('subject').value = 'Summer Sale - Up to 50% Off!';
+            document.getElementById('content').value = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
+    <div style="background-color: #ffffff; padding: 30px; border-radius: 8px;">
+        <h1 style="color: #333; margin-top: 0;">Summer Sale is Here! 🌞</h1>
+
+        <p style="font-size: 16px; color: #666; line-height: 1.6;">
+            Dear Valued Customer,
+        </p>
+
+        <p style="font-size: 16px; color: #666; line-height: 1.6;">
+            We're excited to announce our biggest summer sale yet! Enjoy up to 50% off on selected items.
+        </p>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="#" style="display: inline-block; padding: 15px 30px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                Shop Now
+            </a>
+        </div>
+
+        <h2 style="color: #333; font-size: 20px;">Featured Products</h2>
+
+        <div style="margin: 20px 0;">
+            <img src="https://via.placeholder.com/500x300/007bff/ffffff?text=Featured+Product" alt="Featured Product" style="max-width: 100%; height: auto; border-radius: 5px;">
+        </div>
+
+        <p style="font-size: 16px; color: #666; line-height: 1.6;">
+            Don't miss out on these amazing deals. Sale ends soon!
+        </p>
+
+        <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 30px 0;">
+
+        <p style="font-size: 14px; color: #999; text-align: center;">
+            You're receiving this email because you subscribed to our newsletter.<br>
+            <a href="#" style="color: #007bff;">Unsubscribe</a> | <a href="#" style="color: #007bff;">View in browser</a>
+        </p>
+    </div>
+</div>`;
+            document.getElementById('images').value = `https://via.placeholder.com/600x200/28a745/ffffff?text=Banner+Image
+https://via.placeholder.com/300x300/ffc107/ffffff?text=Product+1
+https://via.placeholder.com/300x300/dc3545/ffffff?text=Product+2`;
+        }
+    </script>
+</body>
+</html>

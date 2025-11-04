@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  premail:
+    build: .
+    container_name: premail-app
+    ports:
+      - "5000:5000"
+    environment:
+      - PREMAIL_HOST=0.0.0.0
+      - PREMAIL_PORT=5000
+      - PREMAIL_DEBUG=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
