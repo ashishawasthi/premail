@@ -38,7 +38,8 @@ cd premail
 
 2. Install dependencies:
 ```bash
-pip install -r requirements.txt
+python3 -m venv myenv
+pip3 install -r requirements.txt
 ```
 
 ### Running the Application
