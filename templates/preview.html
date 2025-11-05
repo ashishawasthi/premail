@@ -9,18 +9,19 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: #f5f7fa;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .preview-toolbar {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: #fff;
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            background: #ffffff;
+            color: #4a5568;
+            padding: 16px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .toolbar-content {
@@ -28,69 +29,87 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 16px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .toolbar-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
+            color: #2d3748;
+            letter-spacing: -0.01em;
         }
 
         .toolbar-controls {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
             align-items: center;
         }
 
         .control-group {
             display: flex;
-            gap: 5px;
+            gap: 8px;
             align-items: center;
         }
 
         .control-label {
             font-size: 13px;
-            color: #ecf0f1;
-            margin-right: 5px;
+            color: #718096;
+            margin-right: 4px;
+            font-weight: 500;
         }
 
         select, button {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
+            padding: 8px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
+            font-weight: 500;
         }
 
         select {
             background-color: #ffffff;
-            color: #333;
-            min-width: 150px;
+            color: #2d3748;
+            min-width: 160px;
         }
 
         select:hover {
-            background-color: #f0f0f0;
+            border-color: #cbd5e0;
+            background-color: #f7fafc;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         button {
-            background-color: #3498db;
+            background-color: #667eea;
             color: white;
-            font-weight: 500;
+            border: none;
         }
 
         button:hover {
-            background-color: #2980b9;
+            background-color: #5a67d8;
             transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
         }
 
         button.secondary {
-            background-color: #95a5a6;
+            background-color: #ffffff;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
         }
 
         button.secondary:hover {
-            background-color: #7f8c8d;
+            background-color: #f7fafc;
+            border-color: #cbd5e0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .preview-container {
@@ -104,21 +123,19 @@
         .device-frame {
             transition: all 0.4s ease;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             position: relative;
         }
 
         /* iPhone Styling */
         .device-frame.iphone {
-            background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+            background: #f8f9fa;
             border-radius: 55px;
             padding: 15px;
-            border: 3px solid #000000;
-            box-shadow:
-                0 20px 60px rgba(0,0,0,0.6),
-                inset 0 0 2px rgba(255,255,255,0.1);
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
 
         /* iPhone Dynamic Island */
@@ -130,12 +147,10 @@
             transform: translateX(-50%);
             width: 126px;
             height: 37px;
-            background: #000000;
+            background: #1a202c;
             border-radius: 19px;
             z-index: 10;
-            box-shadow:
-                inset 0 0 5px rgba(0,0,0,0.8),
-                0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         /* iPhone Notch (older models) */
@@ -147,20 +162,18 @@
             transform: translateX(-50%);
             width: 180px;
             height: 30px;
-            background: #000000;
+            background: #1a202c;
             border-radius: 0 0 20px 20px;
             z-index: 10;
         }
 
         /* Samsung Styling */
         .device-frame.samsung {
-            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            background: #f8f9fa;
             border-radius: 45px;
             padding: 12px;
-            border: 2px solid #000000;
-            box-shadow:
-                0 20px 60px rgba(0,0,0,0.6),
-                inset 0 0 1px rgba(255,255,255,0.05);
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
 
         /* Samsung Camera Punch-hole */
@@ -172,38 +185,36 @@
             transform: translateX(-50%);
             width: 10px;
             height: 10px;
-            background: #000000;
+            background: #1a202c;
             border-radius: 50%;
             z-index: 10;
-            box-shadow:
-                0 0 0 2px rgba(40,40,40,0.8),
-                inset 0 0 3px rgba(0,0,0,0.9);
+            box-shadow: 0 0 0 2px #cbd5e0;
         }
 
         /* Tablet Styling */
         .device-frame.tablet {
-            background: linear-gradient(145deg, #2c2c2e, #3c3c3e);
+            background: #f8f9fa;
             border-radius: 30px;
             padding: 20px;
-            border: 3px solid #1a1a1a;
+            border: 2px solid #e2e8f0;
         }
 
         /* Power Button (right side) */
         .device-frame.mobile::after {
             content: '';
             position: absolute;
-            right: -4px;
+            right: -3px;
             top: 150px;
-            width: 4px;
+            width: 3px;
             height: 60px;
-            background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+            background: #cbd5e0;
             border-radius: 0 2px 2px 0;
         }
 
         /* Volume Buttons (left side) */
         .device-frame.mobile .volume-buttons {
             position: absolute;
-            left: -4px;
+            left: -3px;
             top: 120px;
         }
 
@@ -212,9 +223,9 @@
             content: '';
             position: absolute;
             left: 0;
-            width: 4px;
+            width: 3px;
             height: 45px;
-            background: linear-gradient(90deg, #2a2a2a, #1a1a1a);
+            background: #cbd5e0;
             border-radius: 2px 0 0 2px;
         }
 
@@ -229,24 +240,25 @@
 
         .device-info {
             position: absolute;
-            top: -30px;
+            top: -32px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff;
-            padding: 6px 18px;
-            border-radius: 20px;
+            background: #ffffff;
+            color: #4a5568;
+            padding: 6px 16px;
+            border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
             white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
         }
 
         .email-viewport {
             background-color: #ffffff;
             overflow: auto;
-            border-radius: 0;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
             position: relative;
         }
 
@@ -283,7 +295,7 @@
             padding: 0 20px;
             font-size: 14px;
             font-weight: 600;
-            color: #000000;
+            color: #2d3748;
         }
 
         .device-frame.iphone.has-dynamic-island .status-bar {
@@ -311,10 +323,10 @@
         .client-toolbar {
             display: none;
             background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 14px 18px;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .client-toolbar.active {
@@ -322,19 +334,19 @@
         }
 
         .toolbar-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border-radius: 50%;
+            border-radius: 6px;
             transition: background-color 0.2s;
             font-size: 18px;
         }
 
         .toolbar-icon:hover {
-            background-color: rgba(0,0,0,0.05);
+            background-color: #f7fafc;
         }
 
         .toolbar-spacer {
@@ -344,19 +356,20 @@
         /* Gmail Specific */
         .client-toolbar.gmail {
             background-color: #ffffff;
+            border-bottom: 1px solid #e8eaed;
         }
 
         .client-toolbar.gmail .toolbar-icon {
             color: #5f6368;
         }
 
-        .client-toolbar.gmail .toolbar-icon.primary {
-            color: #1a73e8;
+        .client-toolbar.gmail .toolbar-icon:hover {
+            background-color: #f1f3f4;
         }
 
         /* Outlook Specific */
         .client-toolbar.outlook {
-            background-color: #ffffff;
+            background-color: #faf9f8;
             border-bottom: 1px solid #edebe9;
         }
 
@@ -364,22 +377,22 @@
             color: #323130;
         }
 
-        .client-toolbar.outlook .toolbar-icon.primary {
-            color: #0078d4;
+        .client-toolbar.outlook .toolbar-icon:hover {
+            background-color: #f3f2f1;
         }
 
         /* Apple Mail Specific */
         .client-toolbar.apple-mail {
             background-color: #fafafa;
-            border-bottom: 1px solid #d1d1d6;
+            border-bottom: 1px solid #e5e5ea;
         }
 
         .client-toolbar.apple-mail .toolbar-icon {
             color: #3c3c43;
         }
 
-        .client-toolbar.apple-mail .toolbar-icon.primary {
-            color: #007aff;
+        .client-toolbar.apple-mail .toolbar-icon:hover {
+            background-color: #f2f2f7;
         }
 
         /* Yahoo Specific */
@@ -392,8 +405,8 @@
             color: #3d3d3d;
         }
 
-        .client-toolbar.yahoo .toolbar-icon.primary {
-            color: #6e00d1;
+        .client-toolbar.yahoo .toolbar-icon:hover {
+            background-color: #f5f5f5;
         }
 
         .email-preview-container {
@@ -402,19 +415,20 @@
         }
 
         .email-header {
-            padding: 20px;
-            border-bottom: 1px solid #e9ecef;
+            padding: 24px;
+            border-bottom: 1px solid #edf2f7;
+            background-color: #ffffff;
         }
 
         .email-from {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         .sender-avatar {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
@@ -422,8 +436,9 @@
             justify-content: center;
             color: white;
             font-weight: 600;
-            margin-right: 12px;
+            margin-right: 14px;
             font-size: 16px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
         }
 
         .sender-info {
@@ -432,39 +447,36 @@
 
         .sender-name {
             font-weight: 600;
-            color: #333;
+            color: #2d3748;
             font-size: 15px;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .sender-email {
             font-size: 13px;
-            color: #666;
-        }
-
-        .email-meta {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.6;
+            color: #718096;
         }
 
         .email-subject {
             font-size: 22px;
             font-weight: 600;
-            color: #333;
-            margin: 15px 0 10px 0;
+            color: #1a202c;
+            margin: 16px 0 10px 0;
+            line-height: 1.4;
         }
 
         .email-date {
             font-size: 13px;
-            color: #999;
+            color: #a0aec0;
+            font-weight: 500;
         }
 
         .email-body {
-            padding: 20px;
+            padding: 24px;
             background-color: #ffffff;
             min-height: 200px;
             word-wrap: break-word;
+            color: #2d3748;
         }
 
         .email-body img {
@@ -473,29 +485,35 @@
         }
 
         .email-images {
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #e9ecef;
+            padding: 24px;
+            background-color: #f7fafc;
+            border-top: 1px solid #edf2f7;
         }
 
         .email-images h3 {
             margin-top: 0;
-            color: #333;
+            color: #2d3748;
             font-size: 16px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
         .image-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 16px;
         }
 
         .image-item {
-            border: 1px solid #e9ecef;
-            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
             overflow: hidden;
             background-color: #ffffff;
+            transition: box-shadow 0.2s;
+        }
+
+        .image-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .image-item img {
@@ -506,15 +524,15 @@
 
         .image-item a {
             display: block;
-            padding: 8px;
+            padding: 10px;
             font-size: 11px;
-            color: #007bff;
+            color: #667eea;
             text-decoration: none;
             word-break: break-all;
         }
 
         .image-item a:hover {
-            background-color: #f8f9fa;
+            background-color: #f7fafc;
         }
 
         @media print {
@@ -561,7 +579,7 @@
 <body>
     <div class="preview-toolbar">
         <div class="toolbar-content">
-            <div class="toolbar-title">📧 Email Preview</div>
+            <div class="toolbar-title">Email Preview</div>
             <div class="toolbar-controls">
                 <div class="control-group">
                     <span class="control-label">Device:</span>
@@ -583,8 +601,8 @@
                         {% endfor %}
                     </select>
                 </div>
-                <button onclick="window.print()">🖨️ Print</button>
-                <button class="secondary" onclick="window.close()">✖️ Close</button>
+                <button onclick="window.print()">Print</button>
+                <button class="secondary" onclick="window.close()">Close</button>
             </div>
         </div>
     </div>
