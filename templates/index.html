@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>📧 PreMail</h1>
+            <h1>PreMail</h1>
             <p class="subtitle">Preview your marketing emails before sending</p>
         </header>
 
@@ -18,7 +18,7 @@
                 <h2>Email Details</h2>
                 <form action="/preview" method="POST" target="_blank">
                     <div class="form-group">
-                        <label for="subject">Email Subject:</label>
+                        <label for="subject">Email Subject</label>
                         <input type="text"
                                id="subject"
                                name="subject"
@@ -27,56 +27,66 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="content">Email Content (HTML):</label>
+                        <label for="content">Email Content (HTML)</label>
                         <textarea id="content"
                                   name="content"
                                   rows="15"
                                   placeholder="Paste your HTML email content here...&#10;&#10;Example:&#10;<h1>Welcome to our Newsletter!</h1>&#10;<p>Check out our latest products and offers.</p>&#10;<img src='IMAGE_URL' alt='Product' style='max-width: 100%;'>"
                                   required></textarea>
-                        <small>Tip: You can include inline styles and HTML formatting</small>
+                        <small>You can include inline styles and HTML formatting for accurate preview</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="images">Image URLs (optional):</label>
+                        <label for="images">Image URLs (Optional)</label>
                         <textarea id="images"
                                   name="images"
                                   rows="5"
                                   placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg&#10;https://example.com/image3.jpg"></textarea>
-                        <small>Enter one URL per line. These will be displayed below the email content.</small>
+                        <small>Enter one URL per line. These images will be displayed below the email content.</small>
                     </div>
 
                     <div class="button-group">
                         <button type="submit" class="btn btn-primary">
-                            👁️ Preview Email
+                            Preview Email
                         </button>
                         <button type="button" class="btn btn-secondary" onclick="loadSample()">
-                            📄 Load Sample
+                            Load Sample
                         </button>
                         <button type="reset" class="btn btn-secondary">
-                            🗑️ Clear
+                            Clear Form
                         </button>
                     </div>
                 </form>
             </div>
 
             <div class="info-section">
-                <h3>ℹ️ How to Use</h3>
+                <h3>How to Use</h3>
                 <ol>
                     <li>Enter your email subject line</li>
-                    <li>Paste your HTML email content (with inline styles)</li>
-                    <li>Optionally add image URLs (one per line)</li>
+                    <li>Paste your HTML email content with inline styles</li>
+                    <li>Optionally add image URLs, one per line</li>
                     <li>Click "Preview Email" to see the rendered result</li>
+                    <li>Test across different devices and email clients</li>
                 </ol>
 
-                <h3>💡 Tips</h3>
+                <h3>Features</h3>
                 <ul>
-                    <li>Use inline CSS for better email client compatibility</li>
-                    <li>Images in HTML should use absolute URLs</li>
-                    <li>Test your preview in different screen sizes</li>
-                    <li>Preview opens in a new tab for easy comparison</li>
+                    <li>Preview on iPhone 17, Galaxy S25, iPad Pro, and more</li>
+                    <li>Test in Gmail, Outlook, Apple Mail, and Yahoo Mail</li>
+                    <li>See authentic email client UI with toolbars</li>
+                    <li>Support for HTML with inline CSS</li>
+                    <li>Preview opens in new tab for comparison</li>
                 </ul>
 
-                <h3>🔧 API Usage</h3>
+                <h3>Best Practices</h3>
+                <ul>
+                    <li>Use inline CSS for better email client compatibility</li>
+                    <li>Always use absolute URLs for images</li>
+                    <li>Test your email in multiple clients</li>
+                    <li>Keep your design responsive</li>
+                </ul>
+
+                <h3>API Usage</h3>
                 <pre><code>POST /api/preview
 Content-Type: application/json
 
@@ -89,7 +99,7 @@ Content-Type: application/json
         </div>
 
         <footer>
-            <p>PreMail - Simple Email Preview Tool | <a href="https://github.com" target="_blank">GitHub</a></p>
+            <p>PreMail - Email Preview Tool | <a href="https://github.com" target="_blank">GitHub</a></p>
         </footer>
     </div>
 
