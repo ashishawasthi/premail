@@ -38,7 +38,8 @@ cd premail
 
 2. Install dependencies:
 ```bash
-python3 -m venv myenv
+python3 -m venv venv
+. ./venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
@@ -48,11 +49,13 @@ pip3 install -r requirements.txt
 
 **Linux/macOS:**
 ```bash
+. ./venv/bin/activate
 ./run.sh
 ```
 
 **Windows:**
-```bash
+```
+sh venv\bin\activate
 run.bat
 ```
 
@@ -127,7 +130,7 @@ curl -X POST http://localhost:5000/api/preview \
 
 ## Testing
 
-PreMail includes automated end-to-end tests using Playwright, available in both TypeScript and Java.
+PreMail includes automated end-to-end tests using Playwright, available in TypeScript, Java, and Python.
 
 ### TypeScript/Playwright Tests
 
@@ -183,9 +186,48 @@ mvn test -Dtest=EmailPreviewTest
 
 **Test Location:** `src/test/java/com/premail/EmailPreviewTest.java`
 
+### Python/Playwright Tests
+
+**Prerequisites:**
+- Python 3.7 or higher
+- pip
+
+**Setup:**
+
+First, install test dependencies and Playwright browsers:
+
+```bash
+# Install test dependencies
+pip3 install -r requirements-test.txt
+
+# Install Playwright browsers
+playwright install
+```
+
+**Run Tests:**
+
+```bash
+# Run all tests
+pytest
+
+# Run tests with verbose output
+pytest -v
+
+# Run tests with live logs
+pytest -s
+
+# Run tests in parallel (faster)
+pytest -n auto
+
+# Generate HTML report
+pytest --html=test-results/report.html
+```
+
+**Test Location:** `tests_python/test_email_preview.py`
+
 ### What the Tests Do
 
-Both test suites perform the same validations:
+All test suites perform the same validations:
 1. Navigate to the application homepage
 2. Click "Load Sample" to populate the form with sample email content
 3. Click "Preview Email" to open the preview in a new window
@@ -208,13 +250,15 @@ premail/
 ├── app.py                    # Main Flask application
 ├── config.py                 # Configuration settings
 ├── presets.py                # Device and email client presets
-├── requirements.txt          # Python dependencies
+├── requirements.txt          # Python application dependencies
+├── requirements-test.txt     # Python test dependencies
 ├── run.sh                    # Linux/macOS startup script
 ├── run.bat                   # Windows startup script
 ├── Dockerfile                # Docker container configuration
 ├── docker-compose.yml        # Docker Compose configuration
 ├── package.json              # Node.js dependencies for TypeScript tests
-├── playwright.config.ts      # Playwright configuration
+├── playwright.config.ts      # Playwright configuration for TypeScript
+├── pytest.ini                # Pytest configuration for Python tests
 ├── pom.xml                   # Maven configuration for Java tests
 ├── templates/                # HTML templates
 │   ├── index.html           # Main interface
@@ -223,6 +267,10 @@ premail/
 │   └── style.css            # Styles
 ├── tests/                   # TypeScript/Playwright tests
 │   └── email-preview.spec.ts
+├── tests_python/            # Python/Playwright tests
+│   ├── __init__.py
+│   ├── conftest.py          # Pytest configuration
+│   └── test_email_preview.py
 └── src/test/java/           # Java/Playwright tests
     └── com/premail/
         └── EmailPreviewTest.java

@@ -36,12 +36,16 @@ build/
 dist/
 *.egg-info/
 
-# Node.js / Playwright
+# Node.js / Playwright / Pytest
 node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+.pytest_cache/
+htmlcov/
+.coverage
+*.pyc
 
 # Java / Maven
 target/
