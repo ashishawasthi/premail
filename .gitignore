@@ -42,3 +42,14 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+.classpath
+.project
+.settings/
+dependency-reduced-pom.xml
